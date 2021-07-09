@@ -21,9 +21,14 @@ DWORD GetRotnProcessID()
                 {
                     if ( K32GetModuleBaseNameW(hProcess, hModule, strProcessName, sizeof(strProcessName)))
                     {
-                        if (!_wcsicmp(strProcessName, L"BloodstainedRotN-Win64-Shipping.exe")) return arrProcessId[i];
+                        if (!_wcsicmp(strProcessName, L"BloodstainedRotN-Win64-Shipping.exe"))
+                        {
+                            CloseHandle(hProcess);
+                            return arrProcessId[i];
+                        }
                     }
                 }
+                CloseHandle(hProcess);
             }
         }
     }
