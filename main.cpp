@@ -3,6 +3,9 @@
 
 int main()
 {
-    std::cout << GetRotnProcessID() << std::endl;
-    std::cout << GetRotnHandle(GetRotnProcessID()) << std::endl;
+    DWORD pid = GetRotnProcessID();
+    HANDLE hRotn = GetRotnHandle(pid);
+    void *moduleBaseAddr = GetRotnModuleBaseAdress(pid);
+
+    std::cout << moduleBaseAddr << "\n" << GetRotnMoneyObjectAdress(hRotn, moduleBaseAddr) << std::endl;
 }
