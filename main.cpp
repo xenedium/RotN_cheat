@@ -1,27 +1,22 @@
-#include <iostream>
 #include <elevations.h>
-#include <conio.h>
+#include <gui.h>
 
-int main()
+int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd)
 {
+    
     DWORD pid = GetRotnProcessID();
-    if (!pid) exit(1);
-    std::cout << "Got pid !\n";
-
+    if (!pid) DisplayError(0);
+    
     HANDLE hRotn = GetRotnHandle(pid);
-    if (!hRotn) exit(1);
-    std::cout << "Got handle\n";
+    if (!hRotn) DisplayError(1);
 
     void *moduleBaseAddr = GetRotnModuleBaseAdress(pid);
-    if (!moduleBaseAddr) exit(1);
-    std::cout << "Got module base adress\n";
+    if (!moduleBaseAddr) DisplayError(2);
 
     void *moneyObjAddr = GetRotnMoneyObjectAdress(hRotn, moduleBaseAddr);
-    if (!moneyObjAddr) exit(1);
-    std::cout << "got money object address\n";
+    if (!moneyObjAddr) DisplayError(3);
 
-    std::cout << "Press a key...\n";
-    getch();
-    std::cout << SetRotnMoney(hRotn, moneyObjAddr, 9500000);
+    RunMainLoop(hRotn, moneyObjAddr);
 
+    return 0;
 }

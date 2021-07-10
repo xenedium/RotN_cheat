@@ -79,3 +79,11 @@ BOOL SetRotnMoney(HANDLE hRotn, void *rotnMoneyObjectAdress, INT32 money)
     SIZE_T nbWritten;
     return WriteProcessMemory(hRotn, (void*)((DWORD64)rotnMoneyObjectAdress + 0x2B0), (const void*)&money, sizeof(INT32), &nbWritten);
 }
+
+INT32 GetRotnMoney(HANDLE hRotn, void *rotnMoneyObjectAdress)
+{
+    INT32 money;
+    SIZE_T nbRead;
+    ReadProcessMemory(hRotn, (void*)((DWORD64)rotnMoneyObjectAdress + 0x2B0), (void*) &money, sizeof(INT32), &nbRead);
+    return money;
+}
