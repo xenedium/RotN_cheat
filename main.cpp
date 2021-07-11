@@ -16,7 +16,5 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
     void *moneyObjAddr = GetRotnMoneyObjectAdress(hRotn, moduleBaseAddr);
     if (!moneyObjAddr) DisplayError(3);
 
-    RunMainLoop(hRotn, moneyObjAddr);
-
-    return 0;
+    return RunMainLoop(hRotn, moneyObjAddr);
 }

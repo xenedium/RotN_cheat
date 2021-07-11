@@ -15,7 +15,7 @@ void DisplayError(uint8_t err)
     exit(err + 1);
 }
 
-void RunMainLoop(HANDLE hRotn, void *rotnMoneyObjectAdress)
+int RunMainLoop(HANDLE hRotn, void *rotnMoneyObjectAdress)
 {
     int fakeargc = 1;
     char *fakeargv = GetCommandLineA();     //im not proud of doing this workaround xD
@@ -39,5 +39,5 @@ void RunMainLoop(HANDLE hRotn, void *rotnMoneyObjectAdress)
 
     mainWindow.show();
 
-    mainApp.exec();
+    return mainApp.exec();
 }
